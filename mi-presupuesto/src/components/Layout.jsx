@@ -1,16 +1,18 @@
-import { Outlet } from 'react-router-dom'
-import Header from './Header.jsx'
-import Nav from './Nav.jsx'
-import styles from '../styles/Layout.module.css'
+import Header from './Header.jsx';
 
-export default function Layout() {
+export default function Layout({ nav, children }) {
   return (
-    <div className={styles.shell}>
-      <Header />
-      <Nav />
-      <main className={styles.main}>
-        <Outlet />
+    <>
+      <header className="header">
+        <div className="container nav">
+          <div style={{ fontWeight: 800 }}>💰 Mi Presupuesto</div>
+          <nav className="row" style={{ gap: '.25rem' }}>{nav}</nav>
+        </div>
+      </header>
+      <main className="container" style={{ display: 'grid', gap: '1rem' }}>
+        {children}
       </main>
-    </div>
-  )
+      <footer>Hecho con React • Datos locales • {new Date().getFullYear()}</footer>
+    </>
+  );
 }

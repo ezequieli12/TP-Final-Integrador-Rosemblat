@@ -1,19 +1,19 @@
-import React from 'react'
-import { createRoot } from 'react-dom/client'
-import { BrowserRouter } from 'react-router-dom'
-import App from './App.jsx'
-import './index.css'
-import ThemeProvider from './context/ThemeProvider.jsx'
-import MovementsProvider from './context/MovementsProvider.jsx'
+import React from 'react';
+import { createRoot } from 'react-dom/client';
+import { BrowserRouter } from 'react-router-dom';
+import App from './App.jsx';
+import './styles/global.css';
+import { BudgetProvider } from './context/BudgetContext.jsx';
+import { ThemeProvider } from './context/ThemeContext.jsx';
 
 createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <BrowserRouter>
-      <ThemeProvider>
-        <MovementsProvider>
+    <ThemeProvider>
+      <BudgetProvider>
+        <BrowserRouter>
           <App />
-        </MovementsProvider>
-      </ThemeProvider>
-    </BrowserRouter>
+        </BrowserRouter>
+      </BudgetProvider>
+    </ThemeProvider>
   </React.StrictMode>
-)
+);

@@ -1,20 +1,30 @@
-import { Routes, Route, Navigate } from 'react-router-dom'
-import Layout from './components/Layout.jsx'
-import Listado from './pages/Listado.jsx'
-import Nuevo from './pages/Nuevo.jsx'
-import Resumen from './pages/Resumen.jsx'
-import Ajustes from './pages/Ajustes.jsx'
+import { NavLink, Route, Routes } from 'react-router-dom';
+import Layout from './components/Layout.jsx';
+import Home from './pages/Home.jsx';
+import New from './pages/New.jsx';
+import Edit from './pages/Edit.jsx';
+import Summary from './pages/Summary.jsx';
+import Settings from './pages/Settings.jsx';
 
 export default function App() {
   return (
-    <Routes>
-      <Route element={<Layout />}>
-        <Route path="/" element={<Listado />} />
-        <Route path="/nuevo" element={<Nuevo />} />
-        <Route path="/resumen" element={<Resumen />} />
-        <Route path="/ajustes" element={<Ajustes />} />
-        <Route path="*" element={<Navigate to="/" replace />} />
-      </Route>
-    </Routes>
-  )
+    <Layout
+      nav={
+        <>
+          <NavLink to="/" end className={({ isActive }) => isActive ? 'active' : ''}>Movimientos</NavLink>
+          <NavLink to="/nuevo" className={({ isActive }) => isActive ? 'active' : ''}>Nuevo</NavLink>
+          <NavLink to="/resumen" className={({ isActive }) => isActive ? 'active' : ''}>Resumen</NavLink>
+          <NavLink to="/ajustes" className={({ isActive }) => isActive ? 'active' : ''}>Ajustes</NavLink>
+        </>
+      }
+    >
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/nuevo" element={<New />} />
+        <Route path="/editar/:id" element={<Edit />} />
+        <Route path="/resumen" element={<Summary />} />
+        <Route path="/ajustes" element={<Settings />} />
+      </Routes>
+    </Layout>
+  );
 }
